@@ -17,4 +17,7 @@ jobs:
           ruby-version: ${{ matrix.ruby_version }}
       - run: "bundle install"
       - run: "bundle exec rspec"
+      - run: cat spec/pacts/test_message_consumer-test_message_producer.json
+        shell: bash
       - run: "bundle exec rake pact:verify"
+        shell: bash
