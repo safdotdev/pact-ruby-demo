@@ -1,4 +1,6 @@
 require 'pact/message/consumer/rspec'
+require 'pact/consumer'
+require 'pact/reification'
 require 'support/pact_spec_helper.rb'
 require_relative '../app/consumers/test_message_consumer.rb'
 
@@ -11,9 +13,9 @@ describe TestMessageConsumer, pact: true do
   # See app/producers/test_message_producer.rb.
 
   expected_payload = {
-    "email": "jane@example.com",
-    "first_name": "Jane",
-    "last_name": "Doe"   
+    "email": Pact.like("jane@example.com"),
+    "first_name": Pact.like("Jane"),
+    # "last_name": Pact.like("Doe") # uncomment to see failure in provider code
   }
 
   # Notice the new pact: :message decorator/metadata 
@@ -28,6 +30,7 @@ describe TestMessageConsumer, pact: true do
       test_message_producer.given("A customer is created")
       .is_expected_to_send("a customer created message")
       # .with_metadata()
+      # .with_content(Pact.like(expected_payload.to_json))
       .with_content(expected_payload)
 
       test_message_producer.send_message_string do | content_string |
@@ -44,7 +47,7 @@ describe TestMessageConsumer, pact: true do
     # This failure would indicate a mismatch between the consumers expectations of the message format and what the producer actually sends.
 
     it "Successfully consumes the message and creates a pact contract file" do
-      expect(@message).to eq(expected_payload.to_json)
+      expect(@message).to eq(Pact::Reification.from_term(expected_payload).to_json)
     end
 
   end
