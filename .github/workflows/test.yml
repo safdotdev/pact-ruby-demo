@@ -18,6 +18,6 @@ jobs:
       - run: "bundle install"
       - run: "bundle exec rspec"
       - run: cat spec/pacts/test_message_consumer-test_message_producer.json
-        shell: bash
-      - run: "bundle exec rake pact:verify"
-        shell: bash
+        if: matrix.os != 'windows-latest'
+      - run: "ruby.exe -S pact verify --pact-helper ./spec/service_consumers/pact_helper.rb --pact-uri ./spec/pacts/test_message_consumer-test_message_producer.json"
+        if: matrix.os == 'windows-latest'
