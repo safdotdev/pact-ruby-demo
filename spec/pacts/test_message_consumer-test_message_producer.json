@@ -11,16 +11,30 @@
       "providerStates": [
         {
           "name": "A customer is created",
-          "params": {
-          }
+          "params": {}
         }
       ],
       "contents": {
         "email": "jane@example.com",
-        "first_name": "Jane",
-        "last_name": "Doe"
+        "first_name": "Jane"
       },
       "matchingRules": {
+        "body": {
+          "$.email": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.first_name": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
       }
     }
   ],

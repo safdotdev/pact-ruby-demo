@@ -1,0 +1,66 @@
+{
+  "consumer": {
+    "name": "Test Message Consumer"
+  },
+  "interactions": [
+    {
+      "contents": {
+        "content": {
+          "email": "jane@example.com",
+          "first_name": "Jane"
+        },
+        "contentType": "application/json",
+        "encoded": false
+      },
+      "description": "async: a customer created message",
+      "matchingRules": {
+        "body": {
+          "$.email": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.first_name": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "metadata": {
+        "contentType": "application/json"
+      },
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "A customer is created",
+          "params": {
+            "contentType": "application/json"
+          }
+        }
+      ],
+      "type": "Asynchronous/Messages"
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.22",
+      "models": "1.2.3"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    },
+    "sbmt-pact": {
+      "pact-ffi": "0.4.22"
+    }
+  },
+  "provider": {
+    "name": "Test Message Provider"
+  }
+}
