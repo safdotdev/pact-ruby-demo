@@ -23,6 +23,8 @@ group :development, :test do
 end
 
 # required to process messages in pact-sbmt
-gem "sbmt-kafka_consumer", ">= 2.0.1"
-gem "sbmt-kafka_producer", ">= 1.0"
+unless RUBY_PLATFORM =~ /win32|x64-mingw32|x64-mingw-ucrt/
+  gem "sbmt-kafka_consumer", ">= 2.0.1"
+  gem "sbmt-kafka_producer", ">= 1.0"
+end
 # gem "karafka-rdkafka", ">= 0.20.0"
