@@ -1,5 +1,5 @@
 # pact-ruby-demo
-Demo repo for Consumer Driven Contract Tests using Pact
+Demo repo for Consumer Driven Contract Tests using Pact 
 
 A proof of concept of [Consumer Driven Contract Testing](https://pactflow.io/what-is-consumer-driven-contract-testing/) for a message based (non-HTTP) producer and consumer relationship using the `pact-message-ruby` gem.
 
