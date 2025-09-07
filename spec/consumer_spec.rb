@@ -4,7 +4,7 @@ require 'pact/reification'
 require 'support/pact_spec_helper.rb'
 require_relative '../app/consumers/test_message_consumer.rb'
 
-describe TestMessageConsumer, pact: true do
+describe TestMessageConsumer, :pact do
 
   subject(:consumer) {TestMessageConsumer.new}
 

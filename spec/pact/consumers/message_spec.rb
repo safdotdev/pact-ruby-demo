@@ -3,7 +3,7 @@
 require 'sbmt/pact/rspec'
 require_relative '../../../app/producers/test_kafka_message_producer'
 
-RSpec.describe 'Test Message Provider', :pact do
+RSpec.describe 'Test Message Provider', :pact_v2 do
   message_pact_provider 'Test Message Producer', opts: {
     pact_dir: File.expand_path('../../pacts', __dir__),
   }

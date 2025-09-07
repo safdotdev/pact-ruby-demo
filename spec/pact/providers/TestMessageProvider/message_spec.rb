@@ -1,7 +1,7 @@
 require 'sbmt/pact/rspec'
 require_relative '../../../../app/consumers/test_message_consumer'
 
-describe TestMessageConsumer, pact: true do
+describe TestMessageConsumer, :pact_v2 do
   has_message_pact_between 'Test Message Consumer', 'Test Message Provider'
 
   subject(:consumer) { TestMessageConsumer.new }
