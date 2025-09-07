@@ -1,0 +1,27 @@
+default: &default
+  client_id: pact-ruby-demo-provider
+  kafka:
+    servers: <%= ENV.fetch('KAFKA_BROKERS'){ 'kafka:9092' } %>
+  consumer_groups:
+    json:
+      name: json
+      topics:
+        - name: 'json-topic'
+          consumer:
+            klass: "TestMessageProducer"
+            deserializer:
+              klass: "Sbmt::KafkaConsumer::Serialization::JsonDeserializer"
+development:
+  <<: *default
+  auth:
+    kind: 'plaintext'
+test:
+  <<: *default
+  deliver: false
+  wait_on_queue_full: false
+  auth:
+    kind: 'plaintext'
+staging: &staging
+  <<: *default
+production:
+  <<: *staging

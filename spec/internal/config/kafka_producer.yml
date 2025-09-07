@@ -1,0 +1,14 @@
+default: &default
+  deliver: true
+  kafka:
+    servers: <%= ENV.fetch('KAFKA_BROKERS'){ 'localhost:9092' } %>
+development:
+  <<: *default
+  auth:
+    kind: 'plaintext'
+test:
+  <<: *default
+  deliver: false
+  wait_on_queue_full: false
+  auth:
+    kind: 'plaintext'
