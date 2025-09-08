@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sbmt/pact/rspec'
+require 'pact/v2/rspec'
 require_relative '../../../app/producers/test_kafka_message_producer'
 
 RSpec.describe 'Test Message Provider', :pact_v2 do

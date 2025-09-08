@@ -1,4 +1,4 @@
-require 'sbmt/pact/rspec'
+require 'pact/v2/rspec'
 require_relative '../../../../app/consumers/test_message_consumer'
 
 describe TestMessageConsumer, :pact_v2 do

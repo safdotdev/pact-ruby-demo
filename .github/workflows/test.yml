@@ -16,13 +16,13 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby_version }}
       - run: "bundle install"
+        env:
+          PACT_RUBY_V2_ENABLE: 'true'
       - run: "bundle exec rake pact:spec"
-      - run: "bundle exec rake pact:spec:v1"
+      - run: "bundle exec rake pact:v2:spec"
       - run: cat spec/pacts/test_message_consumer-test_message_producer.json
       - run: bundle exec rake pact:verify
         shell: bash
         if: matrix.os != 'windows-latest'
-      # - run: "ruby.exe -S pact verify --pact-helper ./spec/service_consumers/pact_helper.rb --pact-uri ./spec/pacts/test_message_consumer-test_message_producer.json"
-        # if: matrix.os == 'windows-latest'
-      - run: bundle exec rake pact:verify:v2
+      - run: bundle exec rake pact:v2:verify
         if: matrix.os != 'windows-latest' # no kafka on windows
