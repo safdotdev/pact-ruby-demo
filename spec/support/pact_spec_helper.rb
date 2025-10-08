@@ -7,6 +7,7 @@
 Pact.message_consumer "Test Message Consumer" do
   has_pact_with "Test Message Producer" do
     mock_provider :test_message_producer do
+      pact_specification_version '3'
     end
   end
 end
