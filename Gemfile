@@ -6,25 +6,20 @@ group :development, :test do
 
   gem 'rspec'
 
-  # gem 'pact'
-
   gem 'pact-message'
 
   gem 'rake'
-  if ENV['X_PACT_DEVELOPMENT']
+  if ENV['X_PACT_DEVELOPMENT'] == 'true'
     gem 'pact', path: '../pact-ruby'
+    gem 'pact-ffi', path: '../pact-ffi'
   else
-    gem 'pact', git: 'https://github.com/safdotdev/pact-ruby.git', branch: 'feat/pact-ruby-v2-conditional-install'
+    gem 'pact'
+    gem 'pact-ffi'
   end
-  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-  gem 'combustion'
+    # for pact/v2 with non rail apps
+  gem 'activesupport'
+  # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  # gem 'combustion'
   gem 'webmock'
 
 end
-
-# required to process messages in pact-ruby-v2
-unless RUBY_PLATFORM =~ /win32|x64-mingw32|x64-mingw-ucrt/
-  gem "sbmt-kafka_consumer", ">= 2.0.1"
-  gem "sbmt-kafka_producer", ">= 1.0"
-end
-# gem "karafka-rdkafka", ">= 0.20.0"

@@ -9,14 +9,14 @@ ENV['PACT_RUBY_V1_ENABLE'] = 'true'
 
 RSpec::Core::RakeTask.new('pact:v2:spec') do |task|
   task.pattern = 'spec/pact/providers/**/*_spec.rb'
-  task.rspec_opts = ['-t pact_v2']
+  task.rspec_opts = ['-t pact_v2', '--require pact_v2_helper']
 end
 RSpec::Core::RakeTask.new('pact:spec') do |task|
-  task.pattern = 'spec/service_consumers/*_spec.rb'
+  task.pattern = 'spec/consumer_spec.rb'
   task.rspec_opts = ['-t pact']
 end
 
 RSpec::Core::RakeTask.new('pact:v2:verify') do |task|
   task.pattern = 'spec/pact/consumers/**/*_spec.rb'
-  task.rspec_opts = ['-t pact_v2']
+  task.rspec_opts = ['-t pact_v2', '--require pact_v2_helper']
 end

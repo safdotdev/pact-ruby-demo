@@ -11,7 +11,8 @@
       "providerStates": [
         {
           "name": "A customer is created",
-          "params": {}
+          "params": {
+        }
         }
       ],
       "contents": {
